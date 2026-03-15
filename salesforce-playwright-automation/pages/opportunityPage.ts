@@ -1,4 +1,5 @@
 import type { Page } from '@playwright/test';
+const { waitForSpinnerToDisappear } = require('../utils/spinnerHandler');
 const { expect } = require('@playwright/test');
 
 
@@ -21,6 +22,8 @@ class OpportunityPage {
     await this.page.fill(this.nameInput, name);
     await this.page.fill(this.quantityInput, quantity);
     await this.page.click(this.saveButton);
+    await waitForSpinnerToDisappear(this.page);
+
   }
 
   async verifyOpportunity(name: string) {
