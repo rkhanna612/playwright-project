@@ -3,6 +3,8 @@ const { LoginPage } = require('../pages/loginPage');
 const { AccountPage } = require('../pages/accountPage');
 const { OpportunityPage } = require('../pages/opportunityPage');
 const { ENV } = require('../config/env');
+const { getToastMessage } = require('../utils/toastHandler');
+
 
 test('Opportunity creation and validation', async ({ page }: { page: import('@playwright/test').Page }) => {
   const login = new LoginPage(page);
@@ -18,4 +20,7 @@ test('Opportunity creation and validation', async ({ page }: { page: import('@pl
   await opportunity.verifyOpportunity(
     "Automation Opportunity"
   );
+  const toast = await getToastMessage(page);
+
+  console.log("Toast message:", toast);
 });
