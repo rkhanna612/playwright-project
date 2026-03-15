@@ -3,7 +3,7 @@ import type { Page } from '@playwright/test';
 
 class AccountPage {
   private page: Page;
-  public accountHomeUrl = '/lightning/o/Account/home';
+  public accountHomeUrl = 'https://power-connect-3925-dev-ed.scratch.lightning.force.com/lightning/o/Account/list?filterName=__Recent';
   public newButton = 'button[title="New"]';
   public nameInput = 'input[name="Name"]';
   public saveButton = 'button[title="Save"]';
