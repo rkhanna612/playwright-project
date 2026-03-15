@@ -1,23 +1,30 @@
 import type { Page } from '@playwright/test';
 const { expect } = require('@playwright/test');
 
+
 class OpportunityPage {
   private page: Page;
+  public opportunityHomeUrl = '/lightning/o/Opportunity/home';
+  public newButton = 'button[title="New"]';
+  public nameInput = 'input[name="Name"]';
+  public quantityInput = 'input[name="Quantity__c"]';
+  public saveButton = 'button[title="Save"]';
+  public header = 'h1';
 
   constructor(page: Page) {
     this.page = page;
   }
 
   async createOpportunity(name: string, quantity: string) {
-    await this.page.goto('/lightning/o/Opportunity/home');
-    await this.page.click('button[title="New"]');
-    await this.page.fill('input[name="Name"]', name);
-    await this.page.fill('input[name="Quantity__c"]', quantity);
-    await this.page.click('button[title="Save"]');
+    await this.page.goto(this.opportunityHomeUrl);
+    await this.page.click(this.newButton);
+    await this.page.fill(this.nameInput, name);
+    await this.page.fill(this.quantityInput, quantity);
+    await this.page.click(this.saveButton);
   }
 
   async verifyOpportunity(name: string) {
-    await expect(this.page.locator('h1')).toContainText(name);
+    await expect(this.page.locator(this.header)).toContainText(name);
   }
 }
 
